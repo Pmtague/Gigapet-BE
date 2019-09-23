@@ -1,0 +1,23 @@
+{
+  "name": "Gigapet-BE",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lambda-School-Gigapet/Gigapet-BE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lambda-School-Gigapet/Gigapet-BE/issues"
+  },
+  "homepage": "https://github.com/Lambda-School-Gigapet/Gigapet-BE#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
