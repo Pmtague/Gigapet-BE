@@ -17,11 +17,56 @@ exports.up = function(knex) {
       tbl.string("weight", 8);
     })
     .createTable("foods", tbl => {
-        tbl.increments()
+      tbl.increments();
 
-        tbl.string("name", 128).notNullable()
-        tbl.integer("servings").notNullable()
+      tbl.string("name", 128).notNullable();
+      tbl.integer("serving_size").notNullable();
+      tbl
+        .integer("category_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("categories")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
     })
+    .createTable("categories", tbl => {
+      tbl.increments();
+
+      tbl.string("name", 20);
+    })
+    .createTable("users_kids_foods", tbl => {
+      tbl
+        .integer("users_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("users")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
+      tbl
+        .integer("kids_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("kids")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
+      tbl
+        .integer("foods_id")
+        .unsigned()
+        .notNullable()
+        .references("id")
+        .inTable("foods")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
+
+      tbl.date("date").notNullable()
+      tbl.string("meal", 128)
+      tbl.integer("servings").notNullable()
+
+      tbl.primary(["users_id", "kids_id", "foods_id"]);
+    });
 };
 
 exports.down = function(knex) {};
