@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -97,6 +96,4 @@ public
 
 # DynamoDB Local files
 .dynamodb/
-=======
 node_modules
->>>>>>> 13bc68de9cc7a3f932bd0697df987b0eb9364fc9
