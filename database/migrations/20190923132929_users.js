@@ -84,10 +84,10 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists("")
-    .dropTableIfExists("")
-    .dropTableIfExists("")
-    .dropTableIfExists("")
-    .dropTableIfExists("")
-    .dropTableIfExists("");
+    .dropTableIfExists("users_kids_food")
+    .dropTableIfExists("meals")
+    .dropTableIfExists("categories")
+    .dropTableIfExists("foods")
+    .dropTableIfExists("kids")
+    .dropTableIfExists("users");
 };
