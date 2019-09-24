@@ -15,6 +15,9 @@ function add(user) {
 			const [id] = ids;
 			return findById(id);
 		})
+		// .catch(err => {
+		// 	console.log(err);
+		// })
 };
 
 function find() {
@@ -22,6 +25,7 @@ function find() {
 };
 
 function findBy(filter) {
+	console.log("filter", filter)
 	return db('users').where(filter);
 };
 
