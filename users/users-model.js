@@ -15,9 +15,6 @@ function add(user) {
 			const [id] = ids;
 			return findById(id);
 		})
-		// .catch(err => {
-		// 	console.log(err);
-		// })
 };
 
 function find() {

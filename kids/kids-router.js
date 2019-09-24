@@ -3,40 +3,27 @@ const router = require("express").Router();
 const Kids = require('../kids/kids-model.js');
 const Users= require('../users/users-model.js');
 
-router.post('/:id/new-kid', (req, res) => {
+router.post("/:id/new-kid", (req, res) => {
 	let newKid = req.body;
-	const { id } = req.params;
+	let id = req.params.id;
 
-	Users.findById(id)
-		.then(user => {
-			if (user) {
-				Kids.add(newKid, id)
-					.then(kid => {
-						res.status(201).json(kid);
-					})
-			} else {
-				res.status(404).json({ message: 'Could not find user' })
-			}
-		})
-		.catch(err => {
-			console.log(err);
-			res.status(500).json({ error: "Could not add kid" });
-		});
+	Kids.addKids(id, newKid)
+	  .then(kid => {
+	    res.status(201).json(kid);
+	  })
+	  .catch(err => {
+		console.log(err);
+		res.status(500).json({ message:  'Could not add new kid'});
+	  });
 });
 
 router.get('/:id/kids', (req, res) => {
 	const { id } = req.params;
-
-	Users.findById(id)
-		.then(user => {
-			if (user) {
-				Kids.find()
-					.then(kids => {
-						res.json(kids)
-					})
-			} else {
-				res.status(404).json({ message: 'Could not find user' })
-			}
+	console.log("Get kids", req.params)
+	Kids
+		.findKidsByUsersId(id)
+		.then(kids => {
+			res.status(200).json(kids)
 		})
 		.catch(err => {
 			console.log(err);
