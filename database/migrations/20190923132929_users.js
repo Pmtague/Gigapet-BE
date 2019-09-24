@@ -15,6 +15,14 @@ exports.up = function(knex) {
       tbl.string("name", 128).notNullable();
       tbl.string("age", 128).notNullable();
       tbl.string("weight", 8);
+      tbl
+        .integer('users_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
     })
     .createTable("foods", tbl => {
       tbl.increments();
@@ -40,15 +48,9 @@ exports.up = function(knex) {
 
         tbl.string("meal_type")
     })
-    .createTable("users_kids_foods", tbl => {
-      tbl
-        .integer("users_id")
-        .unsigned()
-        .notNullable()
-        .references("id")
-        .inTable("users")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
+    .createTable("kids_foods", tbl => {
+      tbl.increments();
+
       tbl
         .integer("kids_id")
         .unsigned()
@@ -77,14 +79,12 @@ exports.up = function(knex) {
       tbl.date("date").notNullable();
 
       tbl.integer("servings").notNullable();
-
-      tbl.primary(["users_id", "kids_id"]);
     });
 };
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists("users_kids_food")
+    .dropTableIfExists("kids_foods")
     .dropTableIfExists("meals")
     .dropTableIfExists("categories")
     .dropTableIfExists("foods")
