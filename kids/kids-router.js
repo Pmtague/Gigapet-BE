@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const Kids = require('../kids/kids-model.js');
-const Users= require('../users/users-model.js');
+// const Users= require('../users/users-model.js');
 
 router.post("/:id/new-kid", (req, res) => {
 	let newKid = req.body;
