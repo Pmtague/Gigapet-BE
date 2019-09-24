@@ -1,27 +1,27 @@
 const db = require('../database/db-config.js');
 
 module.exports = {
-	add,
-	find,
-	findById,
+	addKids,
+	findKids,
+	findKidsByUsersId,
 	remove
 };
 
-function add(kid) {
-	return db('kids')
-		.insert(kid, 'id')
-		.then(ids => {
-			const [ id ] = ids;
-			return findById(id);
-		})
+function addKids(users_id, newKid) {
+	return db('kids as k')
+		.join('users as u', 'u.id', 'k.users_id')
+		.where('k.users_id', users_id)
+		.insert(newKid)
 };
 
-function find() {
+function findKids() {
 	return db('kids').select('id', 'name')
 };
 
-function findById(id) {
-	return db('kids').where({ id }).first();
+function findKidsByUsersId(users_id) {
+	return db('kids')
+		.where({ users_id })
+		.first();
 };
 
 function remove(id) {
