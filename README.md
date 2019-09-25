@@ -8,8 +8,10 @@
 - POST (add a new child): /api/:id/new-kid
 - GET (retrieve a list of children): /api/:id/kids
 - DEL (delete kid by id): /api/kid/:id
+- PUT (update a kid by id): /api/kid/:id
 - POST (add a new food entry to kid by kids id): 
 	/api/:id/new-entry
 - GET (get food entries by kids id): /api/:id/entries
 - GET (entry by entry id): /api/entry/:id
+- DEL (delete entry by id): /api/entry/:id
 - PUT (update an entry by entry id): /api/entry/:id
