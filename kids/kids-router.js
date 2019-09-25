@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const restricted = require("../auth/restricted-middleware");
 
 const Kids = require("../kids/kids-model.js");
 const Users = require("../users/users-model.js");
@@ -30,8 +31,9 @@ router.get("/:id/kids", validateParentId, (req, res) => {
     });
 });
 
-router.get("/kid/:id", (req, res) => {
+router.get("/kid/:id", restricted, (req, res) => {
   const id = req.params.id;
+//   console.log("kid", req.headers)
 
   Kids.findKidById(id)
     .then(kid => {
@@ -62,5 +64,6 @@ function validateParentId(req, res, next) {
       res.status(500).json({ error: "Could not retrieve user" });
     });
 }
+
 
 module.exports = router;
