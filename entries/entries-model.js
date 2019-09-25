@@ -24,8 +24,14 @@ function findEntries(id) {
         })
 }
 
-function findEntryById() {}
+function findEntryById() {
 
-function removeEntry() {}
+}
 
-function updateEntry() {}
+function removeEntry() {
+
+}
+
+function updateEntry() {
+    
+}
