@@ -6,3 +6,20 @@ module.exports = {
     findFoodById,
     removeFood
 }
+
+function addFood(newFood){
+    return db('foods')
+    .insert(newFood)
+}
+
+function findFoods() {
+
+}
+
+function findFoodById() {
+
+}
+
+function removeFood() {
+
+}

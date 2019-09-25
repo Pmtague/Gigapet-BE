@@ -33,7 +33,7 @@ router.get("/:id/kids", validateParentId, (req, res) => {
 
 router.get("/kid/:id", restricted, (req, res) => {
   const id = req.params.id;
-  console.log("kid", req.headers)
+//   console.log("kid", req.headers)
 
   Kids.findKidById(id)
     .then(kid => {
