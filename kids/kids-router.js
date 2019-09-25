@@ -6,7 +6,7 @@ const Kids = require('../kids/kids-model.js');
 router.post("/:id/new-kid", (req, res) => {
 	let newKid = req.body;
 	let id = req.params.id;
-
+	console.log("Add kid req body", req.body)
 	Kids.addKids(id, newKid)
 	  .then(kid => {
 	    res.status(201).json(kid);
