@@ -24,70 +24,28 @@ exports.up = function(knex) {
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
     })
-    .createTable("foods", tbl => {
-      tbl.increments();
-
-      tbl.string("name", 128).notNullable();
-      tbl.integer("serving_size").notNullable();
-      tbl
-        .integer("category_id")
-        .unsigned()
-        .notNullable()
-        .references("id")
-        .inTable("categories")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
-    })
-    .createTable("categories", tbl => {
-      tbl.increments();
-
-      tbl.string("name", 20);
-    })
-    .createTable("meals", tbl => {
-        tbl.increments()
-
-        tbl.string("meal_type")
-    })
-    .createTable("kids_foods", tbl => {
+    .createTable("entries", tbl => {
       tbl.increments();
 
       tbl
-        .integer("kids_id")
+        .integer('kids_id')
         .unsigned()
         .notNullable()
-        .references("id")
-        .inTable("kids")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
-      tbl
-        .integer("foods_id")
-        .unsigned()
-        .notNullable()
-        .references("id")
-        .inTable("foods")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
-      tbl
-        .integer("meals_id")
-        .unsigned()
-        .notNullable()
-        .references("id")
-        .inTable("meals")
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
-        
+        .references('id')
+        .inTable('kids')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
       tbl.date("date").notNullable();
-
-      tbl.integer("servings").notNullable();
-    });
+      tbl.string("meal").notNullable();
+      tbl.string('food').notNullable();
+      tbl.string('category').notNullable();
+      tbl.integer('servings').notNullable();
+    })
 };
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists("kids_foods")
-    .dropTableIfExists("meals")
-    .dropTableIfExists("categories")
-    .dropTableIfExists("foods")
+    .dropTableIfExists("entries")
     .dropTableIfExists("kids")
     .dropTableIfExists("users");
 };
