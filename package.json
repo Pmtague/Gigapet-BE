@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/Lambda-School-Gigapet/Gigapet-BE.git"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

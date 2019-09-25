@@ -18,7 +18,7 @@ function findKids(id) {
 	return db('kids as k')
 	.join("users as u", "u.id", "k.users_id")
 	.where("users_id", id)
-	.select('k.id', 'k.name', 'k.users_id')
+	.select('k.id', 'k.name', 'k.age', 'k.weight', 'k.users_id')
 	.then(kids => {
 		return kids
 	})
