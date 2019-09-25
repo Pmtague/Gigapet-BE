@@ -13,7 +13,7 @@ function addEntry(kids_id, newEntry) {
     .join("kids as k", "k.id", "e.kids_id")
     .where("e.kids_id", kids_id)
     .insert(newEntry);
-}
+};
 
 function findEntries(id) {
     return db('entries as e')
@@ -22,7 +22,7 @@ function findEntries(id) {
         .then(entries => {
             return entries
         })
-}
+};
 
 function findEntryById(id) {
   return db('entries')

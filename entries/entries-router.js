@@ -4,6 +4,7 @@ const restricted = require("../auth/restricted-middleware.js")
 const Entries = require("./entries-model.js");
 const Kids = require("../kids/kids-model.js");
 
+// Add new food entry
 router.post("/:id/new-entry", (req, res) => {
   let newEntry = req.body;
   let id = req.params.id;
@@ -18,6 +19,7 @@ router.post("/:id/new-entry", (req, res) => {
     });
 });
 
+// Get food entries for specified child of specified user
 router.get("/:id/entries", validateKidId, restricted, (req, res) => {
   const { id } = req.params;
 
@@ -31,6 +33,7 @@ router.get("/:id/entries", validateKidId, restricted, (req, res) => {
     });
 });
 
+// Get specific food entry
 router.get("/entry/:id", validateKidId, restricted, (req, res) => {
   const id = req.params.id;
 
@@ -44,6 +47,7 @@ router.get("/entry/:id", validateKidId, restricted, (req, res) => {
     });
 });
 
+// Delete food entry
 router.delete("/entry/:id", restricted, (req, res) => {
   const { id } = req.params;
 
@@ -61,6 +65,7 @@ router.delete("/entry/:id", restricted, (req, res) => {
     });
 });
 
+// Update food entry
 router.put("/entry/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
@@ -82,7 +87,7 @@ router.put("/entry/:id", (req, res) => {
     });
 });
 
-//custom middleware
+//Custom Middleware
 
 function validateKidId(req, res, next) {
   const id = req.params.id;

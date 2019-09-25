@@ -1,5 +1,6 @@
 exports.up = function(knex) {
   return knex.schema
+  // Users Table
     .createTable("users", tbl => {
       tbl.increments();
 
@@ -9,6 +10,8 @@ exports.up = function(knex) {
         .unique();
       tbl.string("password", 128).notNullable();
     })
+
+    // Kids Table
     .createTable("kids", tbl => {
       tbl.increments();
 
@@ -24,6 +27,8 @@ exports.up = function(knex) {
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
     })
+
+    // Food Entries Table
     .createTable("entries", tbl => {
       tbl.increments();
 
