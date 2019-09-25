@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const Users = require("../users/users-model.js");
 const secrets = require("./secrets.js");
 
+// Register a new user account
 router.post("/register", (req, res) => {
   let newUser = req.body;
   const hash = bcrypt.hashSync(newUser.password, 12);
@@ -20,6 +21,7 @@ router.post("/register", (req, res) => {
     });
 });
 
+// Login to a user account
 router.post("/login", (req, res) => {
   let { username, password } = req.body;
 
@@ -39,6 +41,7 @@ router.post("/login", (req, res) => {
     });
 });
 
+// Delete a user account
 router.delete('/:id', (req, res) =>{
   const { id } = req.params;
   
@@ -56,6 +59,7 @@ router.delete('/:id', (req, res) =>{
     });
 });
 
+// Create jwt token for user login persistence
 function generateToken(user) {
   const payload = {
     username: user.username

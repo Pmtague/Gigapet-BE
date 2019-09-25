@@ -4,6 +4,7 @@ const restricted = require("../auth/restricted-middleware");
 const Kids = require("../kids/kids-model.js");
 const Users = require("../users/users-model.js");
 
+// Add new child to user(parent or guardian) account
 router.post("/:id/new-kid", (req, res) => {
   let newKid = req.body;
   let id = req.params.id;
@@ -18,6 +19,7 @@ router.post("/:id/new-kid", (req, res) => {
     });
 });
 
+// Retrieve all children for a specific user
 router.get("/:id/kids", validateParentId, (req, res) => {
   const { id } = req.params;
   console.log("Get kids", req.params);
@@ -31,6 +33,7 @@ router.get("/:id/kids", validateParentId, (req, res) => {
     });
 });
 
+// Retrieve a specific child
 router.get("/kid/:id", restricted, (req, res) => {
   const id = req.params.id;
   //   console.log("kid", req.headers)
@@ -45,6 +48,7 @@ router.get("/kid/:id", restricted, (req, res) => {
     });
 });
 
+// Delete a child from a user account
 router.delete("/kid/:id", restricted, (req, res) => {
 	const { id } = req.params;
   
@@ -62,7 +66,7 @@ router.delete("/kid/:id", restricted, (req, res) => {
 	  });
   });  
 
-// custom middleware
+// Custom Middleware
 
 function validateParentId(req, res, next) {
   const id = req.params.id;
