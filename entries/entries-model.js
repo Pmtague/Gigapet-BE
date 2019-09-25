@@ -24,8 +24,20 @@ function findEntries(id) {
         })
 }
 
-function findEntryById() {}
+function findEntryById(id) {
+  return db('entries')
+    .where({ id })
+    .first();
+};
 
-function removeEntry() {}
+function removeEntry(id) {
+  return db('entries')
+    .where({ id })
+    .del();
+};
 
-function updateEntry() {}
+function updateEntry(changes, id) {
+  return db('entries')
+    .where({ id })
+    .update(changes);
+};
