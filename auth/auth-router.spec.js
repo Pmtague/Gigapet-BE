@@ -6,16 +6,16 @@ const db = require("../database/db-config.js");
 
 describe("auth-router.js", () => {
   describe("auth route", () => {
-    beforeEach(async () => {
-      await db("users").truncate();
-    });
+    // beforeEach(async () => {
+    //   await db("users").truncate();
+    // });
 
     it("should return status 201 from auth register route", async () => {
       const expectedStatus = 201;
 
       const response = await request(server)
         .post("/api/auth/register")
-        .send({ username: "penny", password: "hello" });
+        .send({ username: "rahul", password: "patel" });
 
       expect(response.status).toBe(expectedStatus);
     });
@@ -24,7 +24,17 @@ describe("auth-router.js", () => {
       const expectedBody = await db("users");
 
       const response = await request(server).get("/api/auth/register");
-      expect(response.body.username).toEqual(expectedBody.username);
+      expect(response.body.username).toBe(expectedBody.username);
     });
+
+    it("should return status 200 for login route", async () => {
+        const expectedStatus = 200;
+
+        const response = await request(server)
+        .post("/api/auth/login")
+        .send({ username: "rahul", password: "patel"})
+
+        expect(response.status).toBe(expectedStatus)
+    })
   });
 });
