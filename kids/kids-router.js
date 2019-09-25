@@ -29,6 +29,6 @@ router.get('/:id/kids', (req, res) => {
 			console.log(err);
 			res.status(500).json({ error: "Could not find kids" });
 		});
-})
+});
 
 module.exports = router;
