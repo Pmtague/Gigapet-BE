@@ -33,7 +33,7 @@ router.get("/:id/kids", validateParentId, (req, res) => {
 
 router.get("/kid/:id", restricted, (req, res) => {
   const id = req.params.id;
-//   console.log("kid", req.headers)
+  //   console.log("kid", req.headers)
 
   Kids.findKidById(id)
     .then(kid => {
@@ -45,11 +45,28 @@ router.get("/kid/:id", restricted, (req, res) => {
     });
 });
 
+router.delete("/kid/:id", restricted, (req, res) => {
+	const { id } = req.params;
+  
+	Kids.remove(id)
+	  .then(deleted => {
+		if (deleted) {
+		  res.json({ removed: deleted });
+		} else {
+		  res.status(404).json({ error: "No kid" });
+		}
+	  })
+	  .catch(err => {
+		console.log(err);
+		res.status(500).json({ error: "Could not delete kid" });
+	  });
+  });  
+
 // custom middleware
 
 function validateParentId(req, res, next) {
   const id = req.params.id;
-  console.log("parent validation", req.params)
+  console.log("parent validation", req.params);
 
   Users.findById(id)
     .then(user => {
