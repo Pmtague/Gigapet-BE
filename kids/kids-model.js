@@ -3,7 +3,7 @@ const db = require('../database/db-config.js');
 module.exports = {
 	addKids,
 	findKids,
-	findKidsByUsersId,
+	findKidById,
 	remove
 };
 
@@ -14,13 +14,19 @@ function addKids(users_id, newKid) {
 		.insert(newKid)
 };
 
-function findKids() {
-	return db('kids').select('id', 'name')
+function findKids(id) {
+	return db('kids as k')
+	.join("users as u", "u.id", "k.users_id")
+	.where("users_id", id)
+	.select('k.id', 'k.name', 'k.users_id')
+	.then(kids => {
+		return kids
+	})
 };
 
-function findKidsByUsersId(users_id) {
+function findKidById(id) {
 	return db('kids')
-		.where({ users_id })
+		.where({ id })
 		.first();
 };
 
