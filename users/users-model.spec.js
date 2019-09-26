@@ -2,7 +2,6 @@ const Users = require("./users-model.js");
 const db = require("../database/db-config.js");
 
 describe("users-model.js", () => {
- 
   beforeEach(async () => {
     await db("users").truncate();
   });
@@ -24,29 +23,16 @@ describe("users-model.js", () => {
     });
 
     it("should insert users into the db", async () => {
-      const { id } = await Users.add({
-        username: "penny",
-        password: "tague"
-      });
+        const { id } = await Users.add({
+            username:"penny",
+            password: "tague"
+        })
 
-      let user = await db("users")
-        .where({ id })
-        .first();
+        let user = await db("users")
+            .where({ id })
+            .first()
 
-      expect(user.username).toBe("penny");
-    });
-  });
-  describe("remove()", () => {
-    it("should remove user from the db", async () => {
-
-      const { id } = await Users.remove({
-        username: "Wayne",
-        password: "brett"
-      });
-
-      let users = await db("users");
-      
-      expect(users).toHaveLength(0);
+        expect(user.username).toBe("penny")
     });
   });
 });
