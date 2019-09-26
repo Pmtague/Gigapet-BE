@@ -10,4 +10,17 @@ describe("users-model.js", () => {
         expect(process.env.DB_ENV).toBe("testing")
     })
 
+    describe("add()", () => {
+        it("should add user into the db", async () => {
+            await Users.add({
+                username:"neha",
+                password: "patel"
+            })
+
+            let users = await db("users")
+
+            expect(users).toHaveLength(1)
+        })
+    })
+
 })
