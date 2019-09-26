@@ -19,13 +19,4 @@ module.exports = {
     },
     seeds: { directory: "./database/seeds" }
   },
-  production: {
-    client: "pg",
-    connection: { filename: process.env.DATABASE_URL"./database/gigapet.db3" },
-    migrations: {
-      directory: "./database/migrations",
-      tableName: "dbmigrations"
-    },
-    seeds: { directory: "./database/seeds" }
-  }
 };
