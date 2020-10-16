@@ -6,74 +6,50 @@ An API for a web app that gamifies healthy eating for children.
 
 ## User endpoints:
 
-POST
+User Auth Endpoints
 
 ```
+POST
 Registration: /api/auth/register
-```
 
 POST
-
-```
 Login: /api/auth/login
-```
 
 DEL
-
-```
 Delete user by id: /api/auth/:id
 ```
 
-POST
+User Child Endpoints
 
 ```
+POST
 Add a new child: /api/:id/new-kid
-```
 
 GET
-
-```
 Retrieve a list of children: /api/:id/kids
-```
 
 DEL
-
-```
-Delete kid by id: /api/kid/:id
-```
+Delete child by id: /api/kid/:id
 
 PUT
-
-```
-Update a kid by id: /api/kid/:id
+Update a child by id: /api/kid/:id
 ```
 
+Food Entry Endpoints
+
+```
 POST
-
-```
-Add a new food entry to kid by kids id: /api/:id/new-entry
-```
+Add a new food entry to child by childs id: /api/:id/new-entry
 
 GET
-
-```
-Get food entries by kids id: /api/:id/entries
-```
+Get food entries by childs id: /api/:id/entries
 
 GET
-
-```
 Entry by entry id: /api/entry/:id
-```
 
 DEL
-
-```
-Delete entry by id): /api/entry/:id
-```
+Delete entry by id: /api/entry/:id
 
 PUT
-
-```
-Update an entry by entry id): /api/entry/:id
+Update an entry by entry id: /api/entry/:id
 ```
